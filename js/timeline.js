@@ -31,11 +31,23 @@ const timeline = (function () {
 
     const clearEvents = function ( ) {
         console.log(events);
+    };
+    
+    const drawEvent = function (event) {
+        const timelineSection = Number.parseInt(event.time/size);
+        const element = document.getElementById("tl" + timelineSection );
+        const newNode = document.createElement('div');
+        newNode.className = 'action ' + event.team.toLowerCase();
+        element.appendChild(newNode);
 	};
     
     const drawEvents = function ( ) {
         clearEvents();
-        console.log(events);		
+        const self = this;
+        events.forEach(function(event) {
+            drawEvent(event);
+          });
+          
 	};
 
 	publicObj.init = function (lengthOfPeriodInSeconds) {
