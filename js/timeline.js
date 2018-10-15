@@ -30,14 +30,50 @@ const timeline = (function () {
     };
 
     const clearEvents = function ( ) {
-        console.log(events);
+        [].forEach.call(document.querySelectorAll('.action'),function(e){
+            e.parentNode.removeChild(e);
+          });
     };
     
     const drawEvent = function (event) {
-        const timelineSection = Number.parseInt(event.time/size);
-        const element = document.getElementById("tl" + timelineSection );
+        const percent = (event.time/size)*100;
+        let element;
+        let subsectionPos;
+        if (percent < 10 ) {
+            element = document.getElementById('tl0');
+        } else if (percent < 20) {
+            element = document.getElementById('tl1');
+            subsectionPos = percent - 10;
+        } else if (percent < 30) {
+            element = document.getElementById('tl2');
+            subsectionPos = percent - 20;
+        } else if (percent < 40) {
+            element = document.getElementById('tl3');
+            subsectionPos = percent - 30;
+        } else if (percent < 50) {
+            element = document.getElementById('tl4');
+            subsectionPos = percent - 40;
+        } else if (percent < 60) {
+            element = document.getElementById('tl5');
+            subsectionPos = percent - 50;
+        } else if (percent < 70) {
+            element = document.getElementById('tl6');
+            subsectionPos = percent - 60;
+        } else if (percent < 80) {
+            element = document.getElementById('tl7');
+            subsectionPos = percent - 70;
+        } else if (percent < 90) {
+            element = document.getElementById('tl8');
+            subsectionPos = percent - 80;
+        } else {
+            element = document.getElementById('tl9');
+            subsectionPos = percent - 90;
+        }
+        
         const newNode = document.createElement('div');
         newNode.className = 'action ' + event.team.toLowerCase();
+        newNode.style.position = 'relative';
+        newNode.style.left = subsectionPos + '%';
         element.appendChild(newNode);
 	};
     
