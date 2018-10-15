@@ -28,8 +28,13 @@ const timeline = (function () {
         events.push({time: timeInSeconds,team: team});
 
     };
+
+    const clearEvents = function ( ) {
+        console.log(events);
+	};
     
     const drawEvents = function ( ) {
+        clearEvents();
         console.log(events);		
 	};
 
